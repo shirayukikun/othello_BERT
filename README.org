@@ -1,0 +1,28 @@
+* OthelloBERT
+オセロのAI学習をするため[[https://arxiv.org/abs/1810.04805][BERT]]ベースのモデルと学習スクリプトです．
+
+** 学習の流れ
+1. 石の反転の事前学習
+ - 入力: 盤面 + 着手位置
+ - 出力: 石が反転した後の盤面
+
+2. 合法手を当てるMasked Language Modelingの事前学習
+ - 入力: 盤面．ただし，石に隣接する空きますはマスクされたもの
+ - 出力: マスクの内容を当てる．合法手にはPUTトークン，非合法手にはBLANKトークン．
+
+3. 評価値の予測
+ - 入力: 盤面 + 合法手の位置
+ - 出力: 各位置の評価値．ただし，着手できない位置は-100の値
+
+学習データにはedaxによる対局の棋譜を利用しました．
+
+** Pretrained Model
+以下のurlからダウンロードできます
+- https://drive.google.com/file/d/1i9sNqYfxP-fCY5hJqDy7yd24aQkoiJUx/view?usp=sharing
+
+** ライブラリ
+以下のライブラリを改変し使用しています
+- [[https://github.com/lavox/edax-reversi][edax-reversi]]
+- [[https://github.com/lavox/libedax4py][libedax4py]]
+- [[https://github.com/huggingface/transformers][transformers]]
+

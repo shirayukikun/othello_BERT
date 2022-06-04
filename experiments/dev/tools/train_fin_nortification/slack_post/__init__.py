@@ -1,0 +1,1 @@
+from .slack_post_string import send_message_to_slack

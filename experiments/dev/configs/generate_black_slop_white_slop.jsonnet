@@ -1,0 +1,20 @@
+local CURRENT_DIR = std.extVar("CURRENT_DIR");
+local DATA_CONFIG_DIR = "%s/data_configs" % CURRENT_DIR;
+local ROOT_DIR = std.extVar("ROOT");
+local DATSET_DIR = "%s/datasets" % ROOT_DIR;
+
+
+{
+  number_of_data: 20000,
+  save_file_path: "%s/%s_%s_black_%s_white_%s" % [
+    DATSET_DIR,
+    std.extVar("TAG"),
+    self.number_of_data,
+    self.black_selection_policy,
+    self.white_selection_policy,
+  ],
+  level: 10,
+  black_selection_policy: "slop",
+  white_selection_policy: "slop",
+  seed: 42,
+}
